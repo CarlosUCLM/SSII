@@ -26,8 +26,11 @@ public class rushhour{
         //de momento parece estra todo bien
         switch (action) {
             case "verify":
+            int result = Verificador.verificarNivel(level);
+            System.out.println(result);
                 break;
             case "question":
+            Pregunta.responder(level, args);
                 break;
             default:
                 System.out.println("Acción desconocida: " + action);
