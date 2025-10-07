@@ -22,14 +22,16 @@ public class Rushhour {
             System.out.println("Error: falta la cadena del nivel (-s).");
             return;
         }
-
-        if (action.equals("verify")) {
-            int result = Verificador.verify(level);
-            System.out.println(result);
-        } else if (action.equals("question")) {
-            Pregunta.handle(level, args);
-        } else {
-            System.out.println("Acción desconocida: " + action);
+        //Un switch para hacer el verify o el question después de haber comprobrado que la cadena está bien escrita y que 
+        //de momento parece estra todo bien
+        switch (action) {
+            case "verify":
+                break;
+            case "question":
+                break;
+            default:
+                System.out.println("Acción desconocida: " + action);
+                break;
         }
     }
 }
