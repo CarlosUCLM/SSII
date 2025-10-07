@@ -1,9 +1,9 @@
-public class Rushhour {
+public class rushhour{
     
     public static void main(String[] args) {
         //Se escribe aquí para ver si se ha metido el mensaje que se debe. Si no ha mandado lo que se debe, se acaba el programa 
         if (args.length < 3) {
-            System.out.println("Uso: rushhour <verify|question> -s <cadena> [opciones]");
+            System.out.println("Uso: java -jar rushhour.jar <verify|question> -s <cadena> [opciones]");
             return;
         }
         //Aquí se van a guardar el verify o el question en la variable action. En el level se guardará la cadena larga de letras para la matriz

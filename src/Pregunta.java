@@ -6,7 +6,7 @@ public class Pregunta {
         char[][] tablero = convertirAMatriz(nivel);
         for (int i = 0; i < args.length; i++) {
 
-            //Con este switch puedo, según la orden, hacer solo lo que necesito.
+            //Con este switch puedo, según la orden, hacer solo lo que me pide la linea de comando. Cada case con su correspondiente orden
             switch (args[i]) {
                 //llamada al método contar vehículos para
                 case "--howmany" -> System.out.println(contarVehiculos(tablero));
