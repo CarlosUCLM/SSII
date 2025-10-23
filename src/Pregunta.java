@@ -101,14 +101,15 @@ public class Pregunta {
         }
         return mapa;
     }
-    private static void boolean esObjetivo(char[][] tablero){
+    private static boolean esObjetivo(char[][] tablero){
         boolean resultado = true;
          for (int j = 4; j < 6; j++){
-            if (tablero[2][j] == 'A')´{
+            if (tablero[2][j] == 'A'){
                 resultado=false;
             }
-        return resultado;
+         }
+		 return resultado;
     }
-    }
+}
 }
 
