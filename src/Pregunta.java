@@ -3,7 +3,7 @@ import java.util.*;
 public class Pregunta {
    
     public static void responder(String nivel, String[] args) {
-        char[][] tablero = convertirAMatriz(nivel);
+        private static final char[][] tablero = convertirAMatriz(nivel);
         for (int i = 0; i < args.length; i++) {
 
             //Con este switch puedo, según la orden, hacer solo lo que me pide la linea de comando. Cada case con su correspondiente orden
@@ -47,6 +47,10 @@ public class Pregunta {
                 }
 
                 default -> {
+                }
+
+                case "--move" -> {
+                    System.out.println("Está por hacer")
                 }
             }
             
@@ -101,7 +105,7 @@ public class Pregunta {
         }
         return mapa;
     }
-    private static boolean esObjetivo(char[][] tablero){
+    private static boolean esObjetivo(){
         boolean resultado = true;
          for (int j = 4; j < 6; j++){
             if (tablero[2][j] == 'A'){
@@ -110,6 +114,8 @@ public class Pregunta {
          }
 		 return resultado;
     }
+
+    private static String MoverCoches
 }
 }
 
