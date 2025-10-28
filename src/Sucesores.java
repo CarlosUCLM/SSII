@@ -122,12 +122,13 @@ public class Sucesores {
         return nivelNuevo;
     }
 
-    private static boolean esHorizontal(List<int[]> pos) {
-        int fila = pos.get(0)[0];
-        boolean resultado = true;
-        for (int[] p : pos)
+    private static boolean esHorizontal(List<int[]> Posicion) {
+        int fila = Posicion.get(0)[0];
+		
+        boolean Resultado = true;
+        for (int[] p : Posicion)
             if (p[0] != fila)
-                resultado = false;
-        return resultado;
+                Resultado = false;
+        return Resultado;
     }
 }
