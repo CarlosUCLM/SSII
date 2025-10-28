@@ -115,7 +115,9 @@ public class Pregunta {
 		 return resultado;
     }
 
-    private static String MoverCoches
+    private static String MoverCoches{
+        
+    }
 }
 }
 
