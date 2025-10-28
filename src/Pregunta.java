@@ -50,7 +50,12 @@ public class Pregunta {
                 }
 
                 case "--move" -> {
-                    System.out.println("Está por hacer")
+                    if (i + 1 < args.length) {
+                        String[] acciones = args[i + 1].split(",");
+                        String resultado = aplicarMovimientos(nivel, acciones);
+                        System.out.println(resultado);
+                        i++;
+                    }
                 }
             }
             
@@ -131,6 +136,24 @@ public class Pregunta {
             for (char c : fila)
                 resultado +=c;
         return resultado;
+    }
+
+     private static char[][] mover(char[][] original, char v, char dir, int pasos) {
+        Map<Character, List<int[]>> pos = buscarVehiculos(original);
+        List<int[]> coordenada = pos.get(v);
+        boolean horizontal = coordenada.get(0)[0] == coordnada.get(1)[0];
+        char[][] copia = new char[6][6];
+        for (int i = 0; i < 6; i++) copia[i] = Arrays.copyOf(original[i], 6);
+
+        for (int[] p : coordenada) copia[p[0]][p[1]] = 'o';
+        int delta = (dir == '+') ? pasos : -pasos;
+
+        if (horizontal) {
+            for (int[] p : coordnada) copia[p[0]][p[1] + delta] = v;
+        } else {
+            for (int[] p : coordenada) copia[p[0] + delta][p[1]] = v;
+        }
+        return copia;
     }
 }
 
