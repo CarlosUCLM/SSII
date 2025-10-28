@@ -105,7 +105,7 @@ public class Pregunta {
         }
         return mapa;
     }
-    private static boolean esObjetivo(){
+    private static boolean esObjetivo(char[][] tablero){
         boolean resultado = true;
          for (int j = 4; j < 6; j++){
             if (tablero[2][j] == 'A'){
@@ -115,9 +115,23 @@ public class Pregunta {
 		 return resultado;
     }
 
-    private static String MoverCoches{
-        
+    private static String MoverCoches(String nivel, String[] acciones){
+         char[][] tablero = convertirAMatriz(nivel);
+        for (String accion : acciones) {
+            char coche = accion.charAt(0);
+            char dir = accion.charAt(1);
+            int pasos = Character.getNumericValue(accion.charAt(2));
+            tablero = mover(tablero, coche, dir, pasos);
+        }
+        return convertirACadena(tablero);
+    }
+     private static String convertirACadena(char[][] tablero) {
+        String resultado = "";
+        for (char[] fila : tablero)
+            for (char c : fila)
+                resultado +=c;
+        return resultado;
     }
 }
-}
+
 
