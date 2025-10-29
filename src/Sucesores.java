@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Sucesores {
-
+// Esta función saca TODAS las posibles jugadas (sucesores) que se pueden hacer desde un nivel.
     public static List<String> generarSucesores(String nivel) {
 
         char[][] tablero = convertirAMatriz(nivel);
@@ -10,7 +10,7 @@ public class Sucesores {
 
         List<Character> vehiculosOrdenados = new ArrayList<>(vehiculos.keySet());
         Collections.sort(vehiculosOrdenados);
-
+        // Vamos a buscar los límites del coche (la parte más arriba, abajo, izquierda, derecha)
         for (char v : vehiculosOrdenados) {
             List<int[]> posiciones = vehiculos.get(v);
             boolean horizontal = esHorizontal(posiciones);
@@ -59,7 +59,7 @@ public class Sucesores {
         return lista;
     }
 
- 
+ // Convierte el nivel (cadena de texto) en una matriz 6x6
     private static char[][] convertirAMatriz(String nivel) {
         char[][] tablero = new char[6][6];
         for (int i = 0; i < 36; i++) {
@@ -67,7 +67,7 @@ public class Sucesores {
         }
         return tablero;
     }
-
+// Busca los coches en el tablero y guarda sus posiciones
     private static Map<Character, List<int[]>> buscarVehiculos(char[][] tablero) {
         Map<Character, List<int[]>> mapa = new HashMap<>();
         for (int i = 0; i < 6; i++) {
@@ -83,7 +83,7 @@ public class Sucesores {
         }
         return mapa;
     }
-
+// Mueve un coche en el tablero y devuelve el nuevo estado como texto
     private static String mover(char[][] tablero, char vehiculo, int pasos, boolean horizontal) {
         char[][] nuevoTablero = new char[6][6];
 
@@ -121,7 +121,7 @@ public class Sucesores {
 
         return nivelNuevo;
     }
-
+ // Comprueba si un coche está horizontal 
     private static boolean esHorizontal(List<int[]> Posicion) {
         int fila = Posicion.get(0)[0];
 		

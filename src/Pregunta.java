@@ -110,16 +110,19 @@ public class Pregunta {
         }
         return mapa;
     }
+
+    // Comprueba si el coche rojo (A) ha llegado a la salida
     private static boolean esObjetivo(char[][] tablero){
         boolean resultado = true;
-         for (int j = 4; j < 6; j++){
+         for (int j = 4; j < 6; j++){ 
             if (tablero[2][j] == 'A'){
                 resultado=false;
             }
          }
 		 return resultado;
     }
-
+// Esta función coge un nivel (el texto) y una lista de movimientos
+// y los aplica todos uno detrás de otro, devolviendo el nuevo nivel
     private static String MoverCoches(String nivel, String[] acciones){
          char[][] tablero = convertirAMatriz(nivel);
         for (String accion : acciones) {
@@ -130,6 +133,7 @@ public class Pregunta {
         }
         return convertirACadena(tablero);
     }
+    // Convierte una matriz 6x6 a un texto tipo como el que se me da
      private static String convertirACadena(char[][] tablero) {
         String resultado = "";
         for (char[] fila : tablero)
@@ -137,7 +141,7 @@ public class Pregunta {
                 resultado +=c;
         return resultado;
     }
-
+    // Mueve un coche dentro del tablero según la dirección y pasos dados
      private static char[][] mover(char[][] original, char v, char dir, int pasos) {
         Map<Character, List<int[]>> pos = buscarVehiculos(original);
         List<int[]> coordenada = pos.get(v);
