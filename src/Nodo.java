@@ -19,6 +19,12 @@ public class Node{
         this.profundidad= profundidad;
         this.heuristica=heuristica;
         this.valor= valor;
+        
+    }
+
+    public string Frase(){
+        
+        String escribir = "["+id+","+Idpadre+","+accion+","+estado+","+coste+","+profundidad+","+heuristica+","+valor"]";
     }
 
 
