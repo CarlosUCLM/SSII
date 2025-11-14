@@ -32,6 +32,12 @@ public class rushhour{
             case "question":
             Pregunta.responder(level, args);
                 break;
+            case "successors":
+                 List<String> sucesores = Sucesores.generarSucesores(level);
+                 for (String s : sucesores) {
+                     System.out.println(s);
+                 }
+             break;
             default:
                 System.out.println("Acción desconocida: " + action);
                 break;

@@ -3,7 +3,7 @@ import java.util.*;
 public class Pregunta {
    
     public static void responder(String nivel, String[] args) {
-        char[][] tablero = convertirAMatriz(nivel);
+        private static final char[][] tablero = convertirAMatriz(nivel);
         for (int i = 0; i < args.length; i++) {
 
             //Con este switch puedo, según la orden, hacer solo lo que me pide la linea de comando. Cada case con su correspondiente orden
@@ -42,8 +42,20 @@ public class Pregunta {
                         i++;
                     }
                 }
+                case "--goal" -> {
+                    System.out.println(esObjetivo(tablero));
+                }
 
                 default -> {
+                }
+
+                case "--move" -> {
+                    if (i + 1 < args.length) {
+                        String[] Acciones = args[i + 1].split(",");
+                        String resultados = aplicarMovimientos(nivel, Acciones);
+                        System.out.println(resultados);
+                        i++;
+                    }
                 }
             }
             
@@ -98,5 +110,55 @@ public class Pregunta {
         }
         return mapa;
     }
+
+    // Comprueba si el coche rojo (A) ha llegado a la salida
+    private static boolean esObjetivo(char[][] tablero){
+        boolean resultado = true;
+         for (int j = 4; j < 6; j++){ 
+            if (tablero[2][j] == 'A'){
+                resultado=false;
+            }
+         }
+		 return resultado;
+    }
+// Esta función coge un nivel (el texto) y una lista de movimientos
+// y los aplica todos uno detrás de otro, devolviendo el nuevo nivel
+    private static String MoverCoches(String nivel, String[] acciones){
+         char[][] tablero = convertirAMatriz(nivel);
+        for (String accion : acciones) {
+            char coche = accion.charAt(0);
+            char dir = accion.charAt(1);
+            int pasos = Character.getNumericValue(accion.charAt(2));
+            tablero = mover(tablero, coche, dir, pasos);
+        }
+        return convertirACadena(tablero);
+    }
+    // Convierte una matriz 6x6 a un texto tipo como el que se me da
+     private static String convertirACadena(char[][] tablero) {
+        String resultado = "";
+        for (char[] fila : tablero)
+            for (char c : fila)
+                resultado +=c;
+        return resultado;
+    }
+    // Mueve un coche dentro del tablero según la dirección y pasos dados
+     private static char[][] mover(char[][] original, char v, char dir, int pasos) {
+        Map<Character, List<int[]>> pos = buscarVehiculos(original);
+        List<int[]> coordenada = pos.get(v);
+        boolean horizontal = coordenada.get(0)[0] == coordenada.get(1)[0];
+        char[][] copia = new char[6][6];
+        for (int i = 0; i < 6; i++) copia[i] = Arrays.copyOf(original[i], 6);
+
+        for (int[] p : coordenada) copia[p[0]][p[1]] = 'o';
+        int num = (dir == '+') ? pasos : -pasos;
+
+        if (horizontal) {
+            for (int[] p : coordenada) copia[p[0]][p[1] + num] = v;
+        } else {
+            for (int[] p : coordenada) copia[p[0] + num][p[1]] = v;
+        }
+        return copia;
+    }
 }
+
 
